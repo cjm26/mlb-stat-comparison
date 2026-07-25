@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Local-only: browser auto-open setting and the double-click launcher,
+# which hardcodes a path on this machine.
+.streamlit/
+*.command
