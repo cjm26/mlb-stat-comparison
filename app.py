@@ -6,7 +6,7 @@ import requests
 import streamlit as st
 from scipy.stats import percentileofscore
 
-st.set_page_config(page_title="MLB Stat Comparator", layout="centered")
+st.set_page_config(page_title="MLB Stat Comparison", layout="centered")
 
 STATS_API = "https://statsapi.mlb.com/api/v1/stats"
 
@@ -211,7 +211,7 @@ def show_comparison(
     st.dataframe(pd.DataFrame(summary), use_container_width=True, hide_index=True)
 
 
-st.title("MLB Stat Comparator")
+st.title("MLB Stat Comparison")
 
 try:
     season = current_season()

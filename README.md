@@ -1,4 +1,4 @@
-# MLB Stat Comparator
+# MLB Stat Comparison
 
 Look up any MLB player and see how their current-season stats rank against the
 rest of the league — percentile plus a histogram of the league distribution for
