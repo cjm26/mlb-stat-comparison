@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 import streamlit as st
-from scipy.stats import percentileofscore
 
 st.set_page_config(page_title="MLB Stat Comparison", layout="centered")
 
@@ -149,7 +148,17 @@ def ordinal(n: int) -> str:
 
 
 def percentile_for(series: pd.Series, value: float, lower_is_better: bool) -> float:
-    pct = percentileofscore(series.dropna(), value, kind="mean")
+    """Share of the league at or below `value`, splitting credit for ties.
+
+    Equivalent to scipy's percentileofscore(kind="mean"), inlined so the app
+    doesn't carry scipy just for this one call.
+    """
+    values = series.dropna().to_numpy()
+    if values.size == 0:
+        return float("nan")
+    below = (values < value).sum()
+    at_or_below = (values <= value).sum()
+    pct = (below + at_or_below) / (2 * values.size) * 100
     return 100 - pct if lower_is_better else pct
 
 
